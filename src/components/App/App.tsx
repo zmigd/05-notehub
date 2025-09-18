@@ -1,8 +1,8 @@
-// src/components/App/App.tsx
+
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchNotes, createNote } from "../../services/noteService";
-import type {FetchNotesResponse} from "../../services/noteService";
+import type { FetchNotesResponse } from "../../services/noteService";
 import NoteList from "../NoteList/NoteList";
 import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
@@ -17,14 +17,11 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Використовуємо useQuery, уточнивши тип для `data`
   const { data, isLoading, isError } = useQuery<FetchNotesResponse, Error>({
     queryKey: ["notes", page, search],
     queryFn: () => fetchNotes({ page, perPage: 12, search }),
-      // Якщо цей параметр не підтримується, спробуйте видалити його
   });
 
-  // Мутація для створення нотатки
   const createMutation = useMutation({
     mutationFn: createNote,
     onSuccess: () => {
@@ -33,7 +30,6 @@ export default function App() {
     },
   });
 
-  // Захист від undefined для результатів
   const notesResults = data?.notes ?? [];
   const totalPages = data?.totalPages ?? 1;
 

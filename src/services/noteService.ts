@@ -1,4 +1,4 @@
-// src/services/noteService.ts
+
 import axios from "axios";
 import type { AxiosResponse } from "axios";
 import type { Note } from "../types/note";
@@ -14,7 +14,6 @@ const api = axios.create({
   },
 });
 
-// Інтерфейс відповіді з API
 export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;

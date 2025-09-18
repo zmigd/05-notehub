@@ -24,7 +24,6 @@ export default function NoteList({ notes }: NoteListProps) {
           <h2 className={css.title}>{note.title}</h2>
           <p className={css.content}>{note.content}</p>
           <div className={css.footer}>
-            {/* Відображаємо всі теги, якщо вони є */}
             {note.tags?.map((tag) => (
               <span key={typeof tag === "string" ? tag : tag.id} className={css.tag}>
                 {typeof tag === "string" ? tag : tag.name}
